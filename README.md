@@ -1,7 +1,7 @@
 About ldas-tools-ldasgen-swig
 =============================
 
-Home: https://wiki.ligo.org/Computing/DASWG/LDASTools
+Home: https://wiki.ligo.org/Computing/LDASTools
 
 Package license: GPLv3
 
