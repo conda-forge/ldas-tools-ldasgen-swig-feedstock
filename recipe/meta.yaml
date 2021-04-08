@@ -1,6 +1,6 @@
 {% set name = "ldas-tools-ldasgen-swig" %}
-{% set version = "2.6.7" %}
-{% set sha256 = "8a438b53d8fb9cfdb7f57ac3cc132e9a51a723d11d7feaa4550350bde30d947f" %}
+{% set version = "2.6.8" %}
+{% set sha256 = "1e08bb43cad73d40eb25618e078fa907ec0ed12846d6ff13e54bda6a01e9b0f9" %}
 
 # dependency versions
 {% set ldas_tools_cmake_version = "1.0.8" %}
@@ -8,15 +8,15 @@
 {% set ldas_tools_ldasgen_version = "2.7.0" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
-  sha256: "{{ sha256 }}"
+  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win or python_impl == 'pypy']
 
 requirements:
@@ -59,19 +59,19 @@ outputs:
       imports:
         - LDAStools.LDASlogging
     about:
-      home: "https://wiki.ligo.org/Computing/LDASTools"
-      dev_url: "https://git.ligo.org/ldastools/LDAS_Tools"
-      license: "GPL-3.0-or-later"
-      license_family: "GPL"
-      license_file: "COPYING"
-      summary: "Python bindings for the LDAS Tools generic library"
+      home: https://wiki.ligo.org/Computing/LDASTools
+      dev_url: https://git.ligo.org/ldastools/LDAS_Tools
+      license: GPL-3.0-or-later
+      license_family: GPL
+      license_file: COPYING
+      summary: Python bindings for the LDAS Tools generic library
 
 about:
-  home: "https://wiki.ligo.org/Computing/LDASTools"
-  license: "GPLv3"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "SWIG interface for the LDAS Tools generic library"
+  home: https://wiki.ligo.org/Computing/LDASTools
+  license: GPLv3
+  license_family: GPL
+  license_file: COPYING
+  summary: SWIG interface for the LDAS Tools generic library
 
 extra:
   recipe-maintainers:
