@@ -3,11 +3,13 @@ About ldas-tools-ldasgen-swig
 
 Home: https://wiki.ligo.org/Computing/LDASTools
 
-Package license: GPLv3
+Package license: GPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-ldasgen-swig-feedstock/blob/master/LICENSE.txt)
 
 Summary: SWIG interface for the LDAS Tools generic library
+
+Development: https://git.ligo.org/ldastools/LDAS_Tools.git
 
 Current build status
 ====================
