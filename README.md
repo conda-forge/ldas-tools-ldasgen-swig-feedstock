@@ -3,11 +3,13 @@ About ldas-tools-ldasgen-swig
 
 Home: https://wiki.ligo.org/Computing/LDASTools
 
-Package license: GPLv3
+Package license: GPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-ldasgen-swig-feedstock/blob/master/LICENSE.txt)
 
 Summary: SWIG interface for the LDAS Tools generic library
+
+Development: https://git.ligo.org/ldastools/LDAS_Tools.git
 
 Current build status
 ====================
@@ -63,6 +65,7 @@ Installing `ldas-tools-ldasgen-swig` from the `conda-forge` channel can be achie
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `ldas-tools-ldasgen-swig, python-ldas-tools-ldasgen` can be installed with:
@@ -133,9 +136,9 @@ build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
+   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
    back to 0.
 
 Feedstock Maintainers
