@@ -1,26 +1,25 @@
 #!/bin/bash
 
 set -ex
-pushd ${SRC_DIR}/build
 
-# get python options
-if [ "${PY3K}" -eq 1 ]; then
-  PYTHON_BUILD_OPTS="-DENABLE_SWIG_PYTHON2=no -DENABLE_SWIG_PYTHON3=yes -DPYTHON3_EXECUTABLE=${PYTHON}"
-else
-  PYTHON_BUILD_OPTS="-DENABLE_SWIG_PYTHON3=no -DENABLE_SWIG_PYTHON2=yes -DPYTHON2_EXECUTABLE=${PYTHON}"
-fi
+mkdir -pv _build${PYVER}
+cd _build${PYVER}
 
 # configure
-cmake .. \
-	-DCMAKE_INSTALL_PREFIX=${PREFIX} \
-	-DCMAKE_BUILD_TYPE=Release \
-	${PYTHON_BUILD_OPTS}
+cmake \
+	${SRC_DIR} \
+	${CMAKE_ARGS} \
+	-DCMAKE_BUILD_TYPE:STRING=Release \
+	-DENABLE_SWIG_PYTHON2:BOOL=no \
+	-DENABLE_SWIG_PYTHON3:BOOL=yes \
+	-DPYTHON3_EXECUTABLE:FILE="${PYTHON}" \
+;
 
 # build
-cmake --build python -- -j ${CPU_COUNT}
-
-# install
-cmake --build python --target install
+cmake --build python --parallel ${CPU_COUNT} --verbose
 
 # test
-ctest -VV
+ctest --parallel ${CPU_COUNT} --verbose --test-dir python
+
+# install
+cmake --build python --parallel ${CPU_COUNT} --verbose --target install

@@ -1,11 +1,10 @@
 {% set name = "ldas-tools-ldasgen-swig" %}
 {% set version = "2.6.8" %}
-{% set sha256 = "1e08bb43cad73d40eb25618e078fa907ec0ed12846d6ff13e54bda6a01e9b0f9" %}
 
 # dependency versions
-{% set ldas_tools_cmake_version = "1.0.8" %}
-{% set ldas_tools_al_swig_version = "2.6.7" %}
-{% set ldas_tools_ldasgen_version = "2.7.0" %}
+{% set ldas_tools_cmake_version = "1.2.2" %}
+{% set ldas_tools_al_swig_version = "2.6.8" %}
+{% set ldas_tools_ldasgen_version = "2.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +12,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 1e08bb43cad73d40eb25618e078fa907ec0ed12846d6ff13e54bda6a01e9b0f9
 
 build:
   number: 0
@@ -25,7 +24,7 @@ requirements:
     - cmake >=3.6
     - pkg-config  # [unix]
   host:
-    - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
+    - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - ldas-tools-ldasgen {{ ldas_tools_ldasgen_version }}
     - swig >=3.0.7,<4.0.0a0
   run:
@@ -40,27 +39,30 @@ outputs:
 
   - name: python-ldas-tools-ldasgen
     script: install-python.sh
+    build:
+      ignore_run_exports:
+        - ldas-tools-ldasgen
     requirements:
       build:
         - {{ compiler('cxx') }}
-        - cmake >=3.6
+        - cmake >=3.20
         - pkg-config  # [unix]
       host:
-        - ldas-tools-cmake >={{ ldas_tools_cmake_version }},<1.2.0
+        - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-ldasgen {{ ldas_tools_ldasgen_version }}
         - {{ pin_subpackage('ldas-tools-ldasgen-swig', exact=True) }}
         - python
         - swig >=3.0.7,<4.0.0a0
       run:
-        - ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
+        #- ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
         - python
-        - python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
+        #- python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
     test:
       imports:
         - LDAStools.LDASlogging
     about:
       home: https://wiki.ligo.org/Computing/LDASTools
-      dev_url: https://git.ligo.org/ldastools/LDAS_Tools
+      dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
       license: GPL-3.0-or-later
       license_family: GPL
       license_file: COPYING
@@ -68,7 +70,8 @@ outputs:
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
-  license: GPLv3
+  dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
+  license: GPL-3.0-or-later
   license_family: GPL
   license_file: COPYING
   summary: SWIG interface for the LDAS Tools generic library
