@@ -2,9 +2,9 @@
 {% set version = "2.6.9" %}
 
 # dependency versions
-{% set ldas_tools_cmake_version = "1.2.2" %}
-{% set ldas_tools_al_swig_version = "2.6.8" %}
-{% set ldas_tools_ldasgen_version = "2.7.1" %}
+{% set ldas_tools_cmake_version = "1.2.3" %}
+{% set ldas_tools_al_swig_version = "2.6.9" %}
+{% set ldas_tools_ldasgen_version = "2.7.3" %}
 
 package:
   name: {{ name|lower }}
@@ -16,17 +16,17 @@ source:
 
 build:
   number: 0
-  skip: true  # [win or python_impl == 'pypy']
+  skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake >=3.6
     - pkg-config  # [unix]
+    - swig >=3.0.7
   host:
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - ldas-tools-ldasgen {{ ldas_tools_ldasgen_version }}
-    - swig >=3.0.7,<4.0.0a0
   run:
     - ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
 
@@ -42,17 +42,18 @@ outputs:
     build:
       ignore_run_exports:
         - ldas-tools-ldasgen
+      skip: true  # [python_impl != 'cpython']
     requirements:
       build:
         - {{ compiler('cxx') }}
         - cmake >=3.20
         - pkg-config  # [unix]
+        - swig >=3.0.7
       host:
         - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-ldasgen {{ ldas_tools_ldasgen_version }}
         - {{ pin_subpackage('ldas-tools-ldasgen-swig', exact=True) }}
         - python
-        - swig >=3.0.7,<4.0.0a0
       run:
         #- ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
         - python
