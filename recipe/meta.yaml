@@ -1,9 +1,9 @@
 {% set name = "ldas-tools-ldasgen-swig" %}
-{% set version = "2.6.9" %}
+{% set version = "2.6.10" %}
 
 # dependency versions
 {% set ldas_tools_cmake_version = "1.2.3" %}
-{% set ldas_tools_al_swig_version = "2.6.9" %}
+{% set ldas_tools_al_swig_version = "2.6.10" %}
 {% set ldas_tools_ldasgen_version = "2.7.3" %}
 
 package:
@@ -11,17 +11,18 @@ package:
   version: {{ version }}
 
 source:
-  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 6e4edea331f5e257b024de8c82afa52601ff894cee02cdb57bf3b9e361452439
+  url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
+  sha256: 7e606f41f1998ec2eeab1d3a15130c69b75533bce6d4f5546e9c256e3935be2d
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake >=3.6
+    - make  # [unix]
     - pkg-config  # [unix]
     - swig >=3.0.7
   host:
@@ -38,7 +39,7 @@ outputs:
   - name: ldas-tools-ldasgen-swig
 
   - name: python-ldas-tools-ldasgen
-    script: install-python.sh
+    script: build-python.sh
     build:
       ignore_run_exports:
         - ldas-tools-ldasgen
@@ -47,6 +48,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake >=3.20
+        - make  # [unix]
         - pkg-config  # [unix]
         - swig >=3.0.7
       host:
@@ -63,7 +65,8 @@ outputs:
         - LDAStools.LDASlogging
     about:
       home: https://wiki.ligo.org/Computing/LDASTools
-      dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
+      dev_url: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+      doc_url: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-ldasgen/
       license: GPL-3.0-or-later
       license_family: GPL
       license_file: COPYING
@@ -71,7 +74,8 @@ outputs:
 
 about:
   home: https://wiki.ligo.org/Computing/LDASTools
-  dev_url: https://git.ligo.org/ldastools/LDAS_Tools.git
+  dev_url: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+  doc_url: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-ldasgen/
   license: GPL-3.0-or-later
   license_family: GPL
   license_file: COPYING
