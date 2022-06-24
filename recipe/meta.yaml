@@ -39,7 +39,7 @@ outputs:
   - name: ldas-tools-ldasgen-swig
 
   - name: python-ldas-tools-ldasgen
-    script: install-python.sh
+    script: build-python.sh
     build:
       ignore_run_exports:
         - ldas-tools-ldasgen
