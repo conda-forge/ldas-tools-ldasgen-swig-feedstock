@@ -9,7 +9,9 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-ldas
 
 Summary: SWIG interface for the LDAS Tools generic library
 
-Development: https://git.ligo.org/ldastools/LDAS_Tools.git
+Development: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+
+Documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-ldasgen/
 
 Current build status
 ====================
