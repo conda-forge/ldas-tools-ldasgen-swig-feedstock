@@ -59,7 +59,7 @@ outputs:
       run:
         #- ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
         - python
-        #- python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
+        - python-ldas-tools-al >={{ ldas_tools_al_swig_version }}
     test:
       imports:
         - LDAStools.LDASlogging
