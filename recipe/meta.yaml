@@ -2,9 +2,10 @@
 {% set version = "2.6.11" %}
 
 # dependency versions
-{% set ldas_tools_cmake_version = "1.2.3" %}
-{% set ldas_tools_al_swig_version = "2.6.10" %}
-{% set ldas_tools_ldasgen_version = "2.7.3" %}
+{% set swig_version = "3.0.7" %}
+{% set ldas_tools_cmake_version = "1.3.1" %}
+{% set ldas_tools_al_swig_version = "2.6.11" %}
+{% set ldas_tools_ldasgen_version = "2.7.4" %}
 
 package:
   name: {{ name|lower }}
@@ -27,7 +28,7 @@ requirements:
     - cmake >=3.6
     - make  # [unix]
     - pkg-config  # [unix]
-    - swig >=3.0.7
+    - swig >={{ swig_version }}
   host:
     - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
     - ldas-tools-ldasgen {{ ldas_tools_ldasgen_version }}
@@ -54,7 +55,7 @@ outputs:
         - cmake >=3.20
         - make  # [unix]
         - pkg-config  # [unix]
-        - swig >=3.0.7
+        - swig >={{ swig_version }}
       host:
         - ldas-tools-cmake >={{ ldas_tools_cmake_version }}
         - ldas-tools-ldasgen {{ ldas_tools_ldasgen_version }}
