@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-ldasgen-swig" %}
-{% set version = "2.6.10" %}
+{% set version = "2.6.11" %}
 
 # dependency versions
 {% set ldas_tools_cmake_version = "1.2.3" %}
@@ -12,10 +12,10 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 7e606f41f1998ec2eeab1d3a15130c69b75533bce6d4f5546e9c256e3935be2d
+  sha256: e885b7d195da9f4048ecd265b6cb343818724ece4ea292c5c978d2035e7fa612
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
 
 requirements:
