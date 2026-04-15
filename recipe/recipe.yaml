@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ldas-tools-ldasgen-swig
-  version: 2.6.11
+  version: 2.6.12
   # dependency versions
   swig_version: 3.0.7
   ldas_tools_cmake_version: 1.3.1
@@ -15,7 +15,7 @@ recipe:
 
 source:
   url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
-  sha256: e885b7d195da9f4048ecd265b6cb343818724ece4ea292c5c978d2035e7fa612
+  sha256: 4970ff6145276ee9c0259c5df60ba9a773b9bcf6ed199900039541589b31c501
 
 build:
   number: 0
