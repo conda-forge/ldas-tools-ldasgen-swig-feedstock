@@ -1,0 +1,94 @@
+schema_version: 1
+
+context:
+  name: ldas-tools-ldasgen-swig
+  version: 2.6.11
+  # dependency versions
+  swig_version: 3.0.7
+  ldas_tools_cmake_version: 1.3.1
+  ldas_tools_al_swig_version: 2.6.11
+  ldas_tools_ldasgen_version: 2.7.4
+
+recipe:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
+  sha256: e885b7d195da9f4048ecd265b6cb343818724ece4ea292c5c978d2035e7fa612
+
+build:
+  number: 0
+  skip:
+    - win
+
+outputs:
+  - package:
+      name: ldas-tools-ldasgen-swig
+    build:
+      script: build
+      skip:
+        - win
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake >=3.6
+        - make
+        - pkg-config
+        - swig >=${{ swig_version }}
+      host:
+        - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
+        - ldas-tools-ldasgen ${{ ldas_tools_ldasgen_version }}.*
+    tests:
+      - package_contents:
+          include:
+            - genericAPI/LDASlogging.i
+
+  - package:
+      name: python-ldas-tools-ldasgen
+    build:
+      script:
+        file: build-python.sh
+      skip:
+        - python_impl != 'cpython'
+        - win
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake >=3.20
+        - make
+        - pkg-config
+        - swig >=${{ swig_version }}
+      host:
+        - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
+        - ldas-tools-ldasgen ${{ ldas_tools_ldasgen_version }}.*
+        - ${{ pin_subpackage('ldas-tools-ldasgen-swig', exact=True) }}
+        - python
+      run:
+        #- ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
+        - python
+        - python-ldas-tools-al >=${{ ldas_tools_al_swig_version }}
+      ignore_run_exports:
+        by_name:
+          - ldas-tools-ldasgen
+    tests:
+      - python:
+          imports:
+            - LDAStools.LDASlogging
+    about:
+      summary: Python bindings for the LDAS Tools generic library
+
+about:
+  summary: SWIG interface for the LDAS Tools generic library
+  homepage: https://wiki.ligo.org/Computing/LDASTools
+  repository: https://git.ligo.org/computing/ldastools/LDAS_Tools.git
+  documentation: https://computing.docs.ligo.org/ldastools/LDAS_Tools/ldas-tools-ldasgen/
+  license: GPL-3.0-or-later
+  license_file: COPYING
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - emaros
