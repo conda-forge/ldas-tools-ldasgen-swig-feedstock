@@ -39,7 +39,7 @@ outputs:
         - swig >=${{ swig_version }}
       host:
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
-        - ldas-tools-ldasgen ${{ ldas_tools_ldasgen_version }}.*
+        - ldas-tools-ldasgen >=${{ ldas_tools_ldasgen_version }}
     tests:
       - package_contents:
           include:
@@ -63,7 +63,7 @@ outputs:
         - swig >=${{ swig_version }}
       host:
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
-        - ldas-tools-ldasgen ${{ ldas_tools_ldasgen_version }}.*
+        - ldas-tools-ldasgen >=${{ ldas_tools_ldasgen_version }}
         - ${{ pin_subpackage('ldas-tools-ldasgen-swig', exact=True) }}
         - python
       run:
