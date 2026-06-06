@@ -61,6 +61,13 @@ outputs:
         - make
         - pkg-config
         - swig >=${{ swig_version }}
+        # cross-compile helpers: give the build host a runnable python that
+        # reports target-platform metadata so find_package(PythonInterp)
+        # succeeds (avoids 'Cannot run the interpreter $PREFIX/bin/python').
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - python
       host:
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
         - ldas-tools-ldasgen >=${{ ldas_tools_ldasgen_version }}
