@@ -8,6 +8,7 @@ pushd _build
 # configure
 cmake \
   ${CMAKE_ARGS} \
+  -DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
   -DENABLE_SWIG_PYTHON2:BOOL=no \
   -DENABLE_SWIG_PYTHON3:BOOL=no \
   ${SRC_DIR}
