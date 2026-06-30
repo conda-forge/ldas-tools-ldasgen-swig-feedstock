@@ -7,21 +7,20 @@ cd _build${PYVER}
 
 # configure
 cmake \
-	${SRC_DIR} \
-	${CMAKE_ARGS} \
-	-DBUILD_TESTING:BOOL=no \
-	-DCMAKE_BUILD_TYPE:STRING=Release \
-	-DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
-	-DENABLE_SWIG_PYTHON2:BOOL=no \
-	-DENABLE_SWIG_PYTHON3:BOOL=yes \
-	-DPYTHON3_EXECUTABLE:FILE="${PYTHON}" \
-	-DPYTHON3_VERSION:STRING=${PY_VER} \
+  ${CMAKE_ARGS} \
+  -DBUILD_TESTING:BOOL=no \
+  -DCMAKE_OSX_ARCHITECTURES:STRING="${OSX_ARCH}" \
+  -DENABLE_SWIG_PYTHON2:BOOL=no \
+  -DENABLE_SWIG_PYTHON3:BOOL=yes \
+  -DPYTHON3_EXECUTABLE:FILE="${PYTHON}" \
+  -DPYTHON3_VERSION:STRING=${PY_VER} \
+  ${SRC_DIR} \
 ;
 
 # override the PYTHON3_LIBRARIES cache variable to stop
 # attempting to link against the static libpython library
 if [[ "${target_platform}" == "linux"* ]]; then
-	cmake -DPYTHON3_LIBRARIES="" ${SRC_DIR}
+  cmake -DPYTHON3_LIBRARIES="" ${SRC_DIR}
 fi
 
 # build
@@ -29,7 +28,7 @@ cmake --build python --parallel ${CPU_COUNT} --verbose
 
 # test
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
-	ctest --parallel ${CPU_COUNT} --verbose --test-dir python
+  ctest --parallel ${CPU_COUNT} --verbose --test-dir python
 fi
 
 # install
