@@ -27,8 +27,6 @@ outputs:
       name: ldas-tools-ldasgen-swig
     build:
       script: build
-      skip:
-        - win
     requirements:
       build:
         - ${{ compiler('cxx') }}
@@ -52,7 +50,8 @@ outputs:
         file: build-python.sh
       skip:
         - python_impl != 'cpython'
-        - win
+      files:
+        - lib/python*/site-packages/LDAStools/**/*LDASlogging*
     requirements:
       build:
         - ${{ compiler('cxx') }}
