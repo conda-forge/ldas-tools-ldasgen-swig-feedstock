@@ -1,7 +1,6 @@
 schema_version: 1
 
 context:
-  name: ldas-tools-ldasgen-swig
   version: "2.6.14"
   # dependency versions
   swig_version: 3.0.7
@@ -10,11 +9,11 @@ context:
   ldas_tools_ldasgen_version: 2.7.7
 
 recipe:
-  name: ${{ name|lower }}
+  name: ldas-tools-ldasgen-swig
   version: ${{ version }}
 
 source:
-  url: https://software.igwn.org/sources/source/${{ name }}-${{ version }}.tar.gz
+  url: https://software.igwn.org/sources/source/ldas-tools-ldasgen-swig-${{ version }}.tar.gz
   sha256: a427187196c822e996589de05b96c913ae5b6a6d29abc0df4a5657d8ba8cc154
 
 build:
