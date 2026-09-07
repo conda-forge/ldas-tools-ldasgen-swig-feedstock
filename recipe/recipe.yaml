@@ -69,9 +69,10 @@ outputs:
             - cross-python_${{ target_platform }}
             - python
       host:
+        - ${{ pin_subpackage('ldas-tools-ldasgen-swig', exact=True) }}
         - ldas-tools-cmake >=${{ ldas_tools_cmake_version }}
         - ldas-tools-ldasgen >=${{ ldas_tools_ldasgen_version }}
-        - ${{ pin_subpackage('ldas-tools-ldasgen-swig', exact=True) }}
+        - libpython
         - python
       run:
         #- ldas-tools-ldasgen >={{ ldas_tools_ldasgen_version }}
